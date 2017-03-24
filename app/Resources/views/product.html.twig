@@ -1,5 +1,42 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    Hello World!!
+<div class="col-md-12">
+ <div class="page-header">
+  <h2>Gaatu Interview</h2>
+ </div>
+<div class="container">
+ <div class="row">
+  <div class="col-md-4">
+   <h3>Add Products</h3>
+   {% if productFormError %}
+   <div class="text-danger">{{ productFormError }}</div>
+   {% endif %}
+   {{ form_start(productForm) }}
+   {{ form_widget(productForm) }}
+   {{ form_end(productForm) }}
+  </div>
+  <div class="col-md-4">
+   <h3>Add to Product List</h3>
+   {% if productListError %}
+   <div class="text-danger">{{ productListError }}</div>
+   {% endif %}
+   {{ form_start(productListForm) }}
+   {{ form_widget(productListForm) }}
+   {{ form_end(productListForm) }}
+  </div>
+  <div class="col-md-4">
+   <h3>Product Lists</h3>
+   {% for p in pl %}
+   <h4>{{ p.id }}</h4>
+   <ul class="list-group">
+   {% for p in p.products %}
+    <li class="list-group-item">{{p.sku}}</li>
+   {% endfor %}
+   </ul>
+   {% endfor %}
+  </div>
+ </div>
+ </div>
+</div>
 {% endblock %}
